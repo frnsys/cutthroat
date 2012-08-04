@@ -1,0 +1,135 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>CUTTHROAT</title>
+	<meta name="description" content="Cutthroat Anagrams">
+	<meta name="author" content="Francis Tseng">
+
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="/css/style.css">
+
+	<script src="/js/libs/modernizr-2.5.3.min.js"></script>
+	<script src="/js/libs/jquery-1.7.1.min.js"></script>
+	<script src="/js/libs/underscore.js"></script>
+	<script src="/js/libs/backbone-min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/models.js"></script>
+	<script src="/js/views.js"></script>
+	<script src="/js/controller.js"></script>
+
+	<script type="text/template" id="playerlist-template">
+    <h2><%= name %></h2>
+    <ul class="players-list"></ul>
+  </script>
+
+  <script type="text/template" id="player-template">
+  	<span style="color:<%= color %>"><%= name %><i class="typing"> typing...</i></span>
+	</script>
+
+	<script type="text/template" id="toofull-template">
+		<div class="error"><img src="/img/error.png"> There are too many players! <%= excess %> will need to leave.</div>
+	</script>
+
+	<script type="text/template" id="readyimg">
+		<img src="/img/ready.png">
+	</script>
+
+	<script type="text/template" id="gamesettings-template">
+		<ul class="game-settings">
+			<li>Max Players: <span class="maxplayers"><%= maxPlayers %></span></li>
+			<li>Ready? <span class="ready">Yup</span></li>
+		</ul>
+	</script>
+
+	<script type="text/template" id="adminsettings-template">
+		<ul class="admin-settings">
+			<li><label>Max Players:</label>
+			<select id="max_players">
+				<option value="2">2</option>
+				<option value="3">3</option>	
+				<option value="4">4</option>	
+				<option value="5">5</option>	
+				<option value="6">6</option>	
+			</select></li>
+			<li>Ready? <span class="ready">Yup</span></li>
+			<li class="startitup"><button class="startgame inactive">Start</button></li>
+		</ul>
+	</script>
+
+  <script type="text/template" id="game-template">
+  	<div class="chat">
+			<div class="talkbox">
+				<div class="talktalk">
+					<div class="talk"></div>
+				</div>
+				<div class="megaphone">
+					<input type="text" value="" placeholder="Say something" id="talky">
+					<button id="send_talk">Talk</button>
+				</div>
+			</div>
+
+			<div class="players">
+			</div>
+		</div> <!-- .chat -->
+	</script>
+
+</head>
+<body>
+
+<div role="main" class="main">
+
+	<header>
+		<h1>Cutthroat</h1>
+	</header>
+
+	<div class="overlay">
+	</div>
+
+	<!-- JOIN -->
+	<div class="join">
+		<h1>Give your name to continue...</h1>
+		<input type="text" value="" placeholder="Enter your name" id="name">
+		<button id="join">Next</button>
+	</div> <!-- .join -->
+
+	<!-- GAMESELECT -->
+	<div class="gameselect">
+		<h1>Join or create a game...</h1>
+		<input type="text" value="" placeholder="Enter the game name" id="gamename">
+		<button id="join_game">Join</button>
+	</div> <!-- .gameselect -->
+
+	<!-- FULL -->
+	<div class="full">
+		<h1>Sorry, that game is full. Try joining or creating another:</h1>
+		<input type="text" value="" placeholder="Enter the game name" id="gamename">
+		<button id="join_game">Join</button>
+	</div> <!-- .full -->
+
+	<!-- FULL -->
+	<div class="inprogress">
+		<h1>Sorry, this game has already started. Try joining or creating another:</h1>
+		<input type="text" value="" placeholder="Enter the game name" id="gamename">
+		<button id="join_game">Join</button>
+	</div> <!-- .full -->
+
+
+
+	<!-- GAME -->
+	<div class="gamebox">
+	</div>
+
+
+</div> <!-- .main -->
+
+<!-- <script src="/js/script.js"></script> -->
+
+</body>
+</html>
